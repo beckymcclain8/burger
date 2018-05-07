@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+
+            <img src="https://cdn.pixabay.com/photo/2018/02/26/21/44/hamburger-3184108_960_720.png" alt="burger" id="burgerImage" style="width: 300px">
+            <h1>Eat-Da-Burger!</h1>
+
+
+            {{#each burgers}}
+            <li>
+                <p>
+                    {{this.id}}. {{this.burger_name}}
+
+                <button data-devourId="{{this.id}}" class="devour">Devour this burger!</button>
+                </p>
+            </li>
+            {{/each}}
+
+            <form>
+                <div class="burgerForm">
+                    <label for="name">Enter the burger you want to east and click the Submit button.</label>
+                    <br>
+                    <input type="text" class="formInfo" id="burgerInfo" aria-describedby="burgerHelp" placeholder="Enter your burger here...">
+                </div>
+            </form>
+
+            <button type="submit" id="submit" class="btn btn-secondary">Submit</button>
+        </div>
+        <!-- col div-->
+    </div>
+    <!-- row div-->
+</div>
+<!-- container div-->
