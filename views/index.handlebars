@@ -2,25 +2,26 @@
     <div class="row">
         <div class="col-12">
 
-            <img src="https://cdn.pixabay.com/photo/2018/02/26/21/44/hamburger-3184108_960_720.png" alt="burger" id="burgerImage" style="width: 300px">
+            <img src="https://i.pinimg.com/originals/7c/d7/59/7cd759fcdb7d9a8dd2210daee1fa6087.png" alt="burger" id="burgerImage" style="width: 300px">
             <h1>Eat-Da-Burger!</h1>
 
 
             {{#each burgers}}
             <li>
-                <p>
+            
                     {{this.id}}. {{this.burger_name}}
 
                 <button data-devourId="{{this.id}}" class="devour">Devour this burger!</button>
-                </p>
+            
             </li>
             {{/each}}
 
-            <form>
+            {{!-- action="/burgers" method="POST"  --}}
+            <form class= "burg">
                 <div class="burgerForm">
                     <label for="name">Enter the burger you want to east and click the Submit button.</label>
                     <br>
-                    <input type="text" class="formInfo" id="burgerInfo" aria-describedby="burgerHelp" placeholder="Enter your burger here...">
+                    <input type="text" class="formInfo" name = "burger_name" id="burgerInfo" aria-describedby="burgerHelp" placeholder="Enter your burger here...">
                 </div>
             </form>
 
@@ -31,3 +32,27 @@
     <!-- row div-->
 </div>
 <!-- container div-->
+
+<script>
+  
+  console.log("working?");
+$("#submit").on("click", function(event) {
+    event.preventDefault();
+console.log("click worked");
+    var newBurger = {
+      burger_name: $("#burgerInfo").val().trim(),
+      };
+
+    // Send the POST request.
+    //  I changed the route from api/burgers to /burgers/create because it's burgers/create in burgers_controller
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(
+      function() {
+        console.log("created new burger");
+        location.reload();
+      }
+    );
+  });
+</script>

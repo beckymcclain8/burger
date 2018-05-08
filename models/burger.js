@@ -1,5 +1,4 @@
 
-//check this...
 var orm = require("../config/orm.js");
 
 var burger = {
@@ -8,7 +7,12 @@ var burger = {
           cb(res);
         });
       },
-// selectAll("id, burger_name", "burgers");
+
+      insertOne: function(cols, vals, cb) {
+        orm.insertOne("burgers", cols, vals, cb);
+        //   orm.insertOne("burgers", ["burger_name", "devoured"], [name, false], cb);
+            
+        },
 
 };
 
