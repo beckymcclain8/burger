@@ -7,7 +7,6 @@ router.get("/", function(req, res) {
     var hbsObject = {
       burgers: data
     };
-    console.log(hbsObject);
     res.render("index", hbsObject);
   });
 });
@@ -25,8 +24,8 @@ router.post("/burgers/create", function(req, res) {
 router.put("/burgers/update", function(req, res) {
   var condition = "id = " + req.body.id;
   burger.updateOne(condition, function(result) {
-    console.log(result);
-    res.redirect("/");
+    // res.redirect("/");
+    res.json(result);
   });
 });
 

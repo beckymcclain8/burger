@@ -12,7 +12,6 @@ var burger = {
   },
 
   updateOne: function(condition, cb) {
-    // var condition = "id=" + id;
     orm.updateOne("burgers", {devoured: true}, condition, cb);
   
   }
