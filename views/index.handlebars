@@ -1,45 +1,58 @@
 <div class="container">
+
+<div class="row">
+        <div class="col-12" id= "burgerPic" style="margin-left:300px; padding:50px;">
+    <img src="https://i.pinimg.com/originals/7c/d7/59/7cd759fcdb7d9a8dd2210daee1fa6087.png" alt="burger" id="burgerImage" style="width: 300px">
+    <h1>Eat-Da-Burger!</h1>
+        </div>
+        </div>
+
     <div class="row">
-        <div class="col-12">
-
-            <img src="https://i.pinimg.com/originals/7c/d7/59/7cd759fcdb7d9a8dd2210daee1fa6087.png" alt="burger" id="burgerImage" style="width: 300px">
-            <h1>Eat-Da-Burger!</h1>
-
+        <div class="col-6">
             <h2>Burgers to Eat</h2>
-            <ul>
-            {{#each burgers}} {{#unless this.devoured}}
-            
-
+            <ul style="font-size:large;">
+                {{#each burgers}} {{#unless this.devoured}} 
+                
                 {{this.id}}. {{this.burger_name}}
 
                 <form class="devour-burger" data-id="{{this.id}}">
                     <input type="hidden" name="devoured" data-value="true">
-                    <button data-devourId="{{this.id}}" class="devour">Devour this burger!</button>
-                </form>
-            
-            {{/unless}} {{/each}}
+                    <button data-devourId="{{this.id}}" class="btn btn-info" class="devour" style="margin:5px;">Devour this burger!</button>
+                </form> 
+                
+                {{/unless}} {{/each}}
+            </ul>
+        </div>
+
+        <div class="col-6">
 
             <h2>Devoured Burgers...</h2>
 
-            <ul>
-                {{#each burgers}} {{#if this.devoured}}
-            
-                    {{this.id}}. {{this.burger_name}}
-        
+            <ul style="font-size:large;">
+                
+                {{#each burgers}} {{#if this.devoured}} 
+                
+                {{this.id}}. {{this.burger_name}} 
+                <br>
                 {{/if}} {{/each}}
+                
             </ul>
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-12" style="margin-left:300px; padding:50px;">
             <h2>Add a Burger!</h2>
 
             <form class="burg">
                 <div class="burgerForm">
-                    <label for="name">Enter the burger you want to east and click the Submit button.</label>
+                    <label for="name" style="font-size:large;"> Enter the burger you want to east and click the Submit button.</label>
                     <br>
                     <input type="text" class="formInfo" name="burger_name" id="burgerInfo" aria-describedby="burgerHelp" placeholder="Enter your burger here...">
                 </div>
             </form>
-
-            <button type="submit" id="submit" class="btn btn-secondary">Submit</button>
+<br>
+            <button type="submit" id="submit" class="btn btn-info">Submit</button>
         </div>
         <!-- col div-->
     </div>
@@ -68,7 +81,7 @@
         );
     });
 
-  
+
     $(".devour-burger").on("click", function (event) {
         event.preventDefault();
         var burgerInfo = {
@@ -78,13 +91,13 @@
 
         console.log("burgerInfo: ", burgerInfo);
         console.log("devoured click worked");
-       
+
         $.ajax("/burgers/update", {
             type: "PUT",
             data: burgerInfo
         }).then(
             function () {
-               location.reload();
+                location.reload();
             }
         );
     });
