@@ -68,17 +68,20 @@
         );
     });
 
-    //haven't tested yet
+  
     $(".devour-burger").on("click", function (event) {
         event.preventDefault();
-        var id = $(this).data("id");
-        console.log("id: " + id);
+        var burgerInfo = {
+            data: true,
+            id: $(this).data("id")
+        };
+
+        console.log("burgerInfo: ", burgerInfo);
         console.log("devoured click worked");
        
         $.ajax("/burgers/update", {
             type: "PUT",
-            data: true,
-            id: id
+            data: burgerInfo
         }).then(
             function () {
                location.reload();
