@@ -5,6 +5,7 @@ var exphbs = require("express-handlebars");
 var app = express();
 var mysql = require("mysql");
 var path = require("path");
+var sequelize = require("sequelize");
 
 var PORT = process.env.PORT || 8080;
 
