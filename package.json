@@ -12,5 +12,9 @@
     "express-handlebars": "^3.0.0",
     "mysql": "^2.15.0",
     "sequelize": "^4.38.0"
+  },
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.6.0"
   }
 }
